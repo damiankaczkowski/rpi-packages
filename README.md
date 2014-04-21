@@ -50,3 +50,11 @@ Sometimes, there are issues when trying to compile libefl and/or Elementary. Luc
  make package/libefl/install V=99<br/>
  
 And after this, I again commanded make to build the image and all packages I wanted and everything worked out.
+
+Recommendations
+===============
+You should set Kernel Modules->Input Modules->kmod-hid-generic to Y - otherwise, you cannot use your USB keyboard(nor mice).
+
+Also, recommendations are to set Raspberry Pi->Utilities->rpi-extendfs to Y, this will allow you to resize your root partition and from the same category, rpi-update to Y. Also use rpi-update after installing the image, as it will upgrade your firmware, I had issues with graphics before I did this and according to some article, some old firmwares(one ships with stock openwrt as well) - can even cause real damage to your device when using some accelerations. It doesn't harm to update, so do it..
+
+Also, to get Weston and acceleration working with wayland, set userland library rpi-userland to Y as well, I have provided one with wayland support.
