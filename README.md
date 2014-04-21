@@ -36,13 +36,16 @@ How to include this package tree in my trunk sources?
 If you patched from rpi-openwrt/patches, you should be all set, if not - Add following line to your <b>trunk/feeds.conf.default</b>:<br />
 src-git raspberry https://github.com/rpi-openwrt/rpi-packages.git<br/>
 
+Then remove gcc from normal packages (execute this in your trunk):
+ rm package/feeds/packages/gcc
+
 And then just use:<br />
  ./scripts/feeds update -a<br/>
  ./scripts/feeds install -a -p raspberry<br/>
  
 Hints for compiling?
 ====================
-To get everything working perfect, you should make sure you are using <b>gcc-linaro 4.8.x</b> as your compiler and for binutils version choose <b>linaro</b> version as well. Especially for development environment, this is very crucial step.
+To get everything working perfect, you should make sure you are using <b>gcc-linaro 4.8.x</b> as your compiler and for binutils version choose <b>linaro</b> version as well. Especially for development environment, this is very crucial step. Compiling gcc is available currently <b>only for targets with following settings</b>: uclibc and gcc-linaro-4.8<
 
 Sometimes, there are issues when trying to compile libefl and/or Elementary. Luckily, there's also a fix for that, although, it needs a bit manual labor..<br />This is because everytime, for some reason, everything isn't compiled in the right order.<br/>I got around this issue by noticing the error and then before retrying, I executed following commands:<br/>
  make package/system/udev/host/compile V=99<br/>
