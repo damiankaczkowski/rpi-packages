@@ -1,0 +1,20 @@
+--- a/gcc/Makefile.in
++++ b/gcc/Makefile.in
+@@ -312,7 +312,7 @@
+ ZLIBINC = @zlibinc@
+ 
+ # How to find GMP
+-GMPLIBS = @GMPLIBS@
++GMPLIBS = @GMPLIBS@ -lgcc_s
+ GMPINC = @GMPINC@
+ 
+ # How to find ISL
+@@ -688,7 +688,7 @@
+ EXTRA_GCC_OBJS =@extra_gcc_objs@
+ 
+ # List of extra libraries that should be linked with the gcc driver.
+-EXTRA_GCC_LIBS = @EXTRA_GCC_LIBS@
++EXTRA_GCC_LIBS =-lgcc_s @EXTRA_GCC_LIBS@
+ 
+ # List of additional header files to install.
+ EXTRA_HEADERS =@extra_headers_list@

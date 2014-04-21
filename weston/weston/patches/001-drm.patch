@@ -1,0 +1,19 @@
+--- a/src/launcher-util.c
++++ b/src/launcher-util.c
+@@ -127,6 +127,7 @@
+ 			return -1;
+ 		}
+ 
++		#ifdef BUILD_DRM_COMPOSITOR
+ 		if (major(s.st_rdev) == DRM_MAJOR) {
+ 			drm_magic_t magic;
+ 			launcher->drm_fd = fd;
+@@ -135,6 +136,7 @@
+ 				return -1;
+ 			}
+ 		}
++		#endif
+ 
+ 		return fd;
+ 	}
+

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+DIDRENAME=0
+[ -f ./libs/lt-elm_prefs_cc ] && {
+	mv ./libs/lt-elm_prefs_cc ./libs/backup-lt-elm_prefs_cc
+	DIDRENAME=1
+	}
+
+./elm_prefs_cc_cmd $@
+
+[ $DIDRENAME = 1 ] && {
+	mv ./libs/backup-lt-elm_prefs_cc ./libs/lt-elm_prefs_cc
+}
+

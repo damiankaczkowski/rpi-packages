@@ -1,0 +1,11 @@
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -41,7 +41,7 @@
+ protocoldir = $(top_srcdir)/protocol
+ 
+ if ENABLE_SCANNER
+-wayland_scanner = $(top_builddir)/src/wayland-scanner
++wayland_scanner = $(TOPDIR)/staging_dir/host/bin/wayland-scanner
+ else
+ wayland_scanner = wayland-scanner
+ endif

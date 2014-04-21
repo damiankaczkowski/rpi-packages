@@ -1,0 +1,53 @@
+menu "Configuration"
+	depends on PACKAGE_weston
+
+config WESTON_ENABLE_EGL
+	bool "Enable EGL"
+	depends on PACKAGE_rpi-userland
+	default y
+	help
+	 Currently EGL built Weston doesn not work. It builds just fine, but screen will be blank. But you can enable egl here if you want to.
+
+config WESTON_ENABLE_WAYLAND_COMPOSITOR
+	bool "Build Wayland Compositor"
+	default y
+	help
+	 Build wayland compositor
+
+config WESTON_ENABLE_FBDEV_COMPOSITOR
+	bool "Build FBDev Compositor"
+	default n
+	help
+	 Build a framebuffer compositor. If you enabled EGL, you might want to enable this.
+
+config WESTON_ENABLE_XWAYLAND
+	bool "Enable xwayland"
+	default y
+	help
+	 XWayland supports X11 native applications on Wayland. Compatibility with X11.
+
+config WESTON_ENABLE_LIBUNWIND
+	bool "Use libunwind"
+	default y
+	help
+	 Enables linking against libunwind (Requires libunwind)
+
+config WESTON_ENABLE_DBUS
+	bool "Use DBUS"
+	default n
+	help
+	 Equips DBUS (Requires dbus)
+
+config WESTON_ENABLE_WESTON_LAUNCH
+	bool "Build Weston Launch"
+	default n
+	help
+	 Builds Weston Launch utility (Requires libpam)
+
+config WESTON_ENABLE_CAIRO_GLESV2
+	bool "Use cairo with glesv2 support"
+	default n
+	help
+	 Builds weston with support for cairo in glesv2 mode instead of image mode. Not recommended.
+
+endmenu

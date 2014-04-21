@@ -1,0 +1,16 @@
+#!/bin/sh /etc/rc.common
+
+START=78
+STOP=30
+
+PROG=/usr/bin/opengalax2
+NAME=opengalax2
+PID_FILE=/var/run/opengalax2.pid
+
+start() {
+	/usr/bin/opengalax2
+}
+
+stop() {
+	[ -f $PID_FILE ] && kill $(cat $(PID_FILE)
+}
