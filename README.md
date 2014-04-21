@@ -45,7 +45,7 @@ And then just use:<br />
  
 Hints for compiling?
 ====================
-To get everything working perfect, you should make sure you are using <b>gcc-linaro 4.8.x</b> as your compiler and for binutils version choose <b>linaro</b> version as well. Especially for development environment, this is very crucial step. Compiling gcc is available currently <b>only for targets with following settings</b>: uclibc and gcc-linaro-4.8<
+To get everything working perfect, you should make sure you are using <b>gcc-linaro 4.8.x</b> as your compiler and for binutils version choose <b>linaro</b> version as well. Especially for development environment, this is very crucial step. Compiling gcc is available currently <b>only for targets with following settings</b>: uclibc and gcc-linaro-4.8
 
 Sometimes, there are issues when trying to compile libefl and/or Elementary. Luckily, there's also a fix for that, although, it needs a bit manual labor..<br />This is because everytime, for some reason, everything isn't compiled in the right order.<br/>I got around this issue by noticing the error and then before retrying, I executed following commands:<br/>
  make package/system/udev/host/compile V=99<br/>
