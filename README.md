@@ -13,7 +13,7 @@ Yes, it's not quite that simple. To get everything working, you need somethings:
 
 Incompatibilities
 =================
- 1) gcc in packages tree ( read: How to include this package tree in my trunk sources? )<br/>
+ 1) gcc in packages tree ( read: <a href="#how-to-include-this-package-tree-in-my-trunk-sources">How to include this package tree in my trunk sources?</a> )<br/>
  2) xorg package feed ( disabled by default in openwrt trunk tree )<br/>
 
 Patches?
