@@ -60,8 +60,13 @@ And after this, I again commanded make to build the image and all packages I wan
 
 Recommendations
 ===============
-You should set Kernel Modules->Input Modules->kmod-hid-generic to Y - otherwise, you cannot use your USB keyboard(nor mice).
+I would recommend setting following to Yes.<br />
+ Kernel Modules->Input Modules->kmod-hid-generic: otherwise, you cannot use your USB keyboard(nor mice)<br/>
+ Raspberry Pi->Utilities->rpi-extendfs: allows resizing of root filesystem<br />
+ Raspberry Pi->Utilities->rpi-update: allows firmware update<br />
 
-Also, recommendations are to set Raspberry Pi->Utilities->rpi-extendfs to Y, this will allow you to resize your root partition and from the same category, rpi-update to Y. Also use rpi-update after installing the image, as it will upgrade your firmware, I had issues with graphics before I did this and according to some article, some old firmwares(one ships with stock openwrt as well) - can even cause real damage to your device when using some accelerations. It doesn't harm to update, so do it..
+Installing rpi-update is important. Stock OpenWrt ships with outdated firmware which will cause troubles when using graphic modes and acceleration. Regarding to one article I have read online, using old firmware might in worst case scenario even cause real damage to the rpi's hardware. It doesn't harm to update, so do it after first boot.
 
-Also, to get Weston and acceleration working with wayland, set userland library rpi-userland to Y as well, I have provided one with wayland support.
+Also, to get Weston and acceleration working with wayland, choose rpi-userland as well.
+Optionally you can test it by installing some demos too.
+I have provided one with wayland support.
