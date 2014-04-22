@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rpi-update
-PKG_VERSION:=0.3
+PKG_VERSION:=0.4
 PKG_RELEASE:=1
-PKG_REV:=fa22030c16bfca08b15478e0ed57710dd02f3b6d
+PKG_REV:=7ae644469ac4bbad5abd40fc2fb70455a54cd5d5
 
 PKG_SOURCE:=$(PKG_REV).tar.gz
 PKG_SOURCE_URL:=https://github.com/rpi-openwrt/rpi-update/archive/
-PKG_MD5SUM:=5d302a063aec1e923010f5a20e374512
+PKG_MD5SUM:=f1d84709e288e281c75e34c13aa80fc3
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_REV)
 PKG_INSTALL:=1
 
