@@ -68,5 +68,6 @@ I would recommend setting following to Yes.<br />
 Installing rpi-update is important. Stock OpenWrt ships with outdated firmware which will cause troubles when using graphic modes and acceleration. Regarding to one article I have read online, using old firmware might in worst case scenario even cause real damage to the rpi's hardware. It doesn't harm to update, so do it after first boot.
 
 Also, to get Weston and acceleration working with wayland, choose rpi-userland as well.
-Optionally you can test it by installing some demos too.
-Provided userland ships with wayland EGL support. Thanks tomeuv. ( Source: https://github.com/tomeuv/userland/tree/wayland )
+Optionally you can test it by installing some demos too. Although, userland is marked as a dependancy when it's needed so you don't have to install it straight to image, for example, if you are planning to build a minimal image, that can be easily archieved with rpi-openwrt.. While still holding a lot of potentiality and modularity.
+Provided userland ships with wayland EGL support. Thanks tomeuv.<br/>
+( Source: https://github.com/tomeuv/userland/tree/wayland )
