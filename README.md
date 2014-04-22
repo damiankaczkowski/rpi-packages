@@ -16,7 +16,7 @@ Patches?
 Yes, most of them are just updates to "old" not yet updated versions in the openwrt trunk and some or minor enhancements and some are add-ons. All patches are available from here:<br/>
 https://github.com/rpi-openwrt/patches<br/>
 
-Or you can download them from OpenWrt Trac one by one and also see the explanation of the patch, list of patches and Trac URLS is provided next.<br/>
+Or you can download them from OpenWrt Trac one by one and also see the explanation of the patch, list of patches and Trac URLs are provided in next chapters of this ReadMe.<br/>
 
 Patches from Trac against base system
 =====================================
