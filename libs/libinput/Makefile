@@ -8,15 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libinput
-PKG_VERSION:=20140223
+PKG_VERSION:=20140422
 PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git://anongit.freedesktop.org/wayland/libinput
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=128f98c43b4b4da0b78b759ae8722249fc06e886
+PKG_SOURCE_VERSION:=9c61146e9e7d9f72fa7094e32224e937d963b908
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
-PKG_MD5SUM:=870903db1112151fd2f94939d0fa25f2
+PKG_MD5SUM:=de95fbde67b05872f8fbc1802c6c7357
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
 
@@ -27,7 +27,7 @@ define Package/libinput
   CATEGORY:=Raspberry Pi
   SUBMENU:=Libraries
   TITLE:=libinput
-  DEPENDS:=+libmtdev +librt +udev
+  DEPENDS:=+libevdev +libmtdev +librt +udev
   URL:=http://cgit.freedesktop.org/wayland/libinput
 endef
 
@@ -38,6 +38,12 @@ define Package/libinput/description
   pointer events from touchpads, pointer acceleration, etc.
   It is based on the input code from the weston Wayland reference compositor.
 endef
+
+TARGET_CFLAGS += -std=gnu99
+
+TARGET_CONFIGURE_OPTS+= \
+	LIBEVDEV_CFLAGS="-I${STAGING_DIR}/usr/include/libevdev-1.0/" \
+	LIBEVDEV_LIBS="-L${STAGING_DIR}/usr/lib -levdev"
 
 CONFIGURE_ARGS+= --disable-documentation --disable-tests
 
