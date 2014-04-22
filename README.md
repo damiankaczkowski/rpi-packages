@@ -37,8 +37,11 @@ How to include this package tree in my trunk sources?
 If you patched from rpi-openwrt/patches, you should be all set, if not - Add following line to your <b>trunk/feeds.conf.default</b>:<br />
 src-git raspberry https://github.com/rpi-openwrt/rpi-packages.git<br/>
 
-Then remove gcc from normal packages (execute this in your trunk):
+This is important, you should do this <b>after</b> installing packages tree and <b>before</b> installing <i>rpi-packages</i> tree. Otherwise, gcc won't show, as there is a duplicate package in <i>normal</i> packages.<br/>
+Remove gcc from normal packages (execute this in your trunk's root):<br />
  rm package/feeds/packages/gcc
+
+Without GCC you lack some other packages as well, that are dependant on it, like autoconf and automake.
 
 And then just use:<br />
  ./scripts/feeds update -a<br/>
