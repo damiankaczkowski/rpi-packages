@@ -69,4 +69,4 @@ Installing rpi-update is important. Stock OpenWrt ships with outdated firmware w
 
 Also, to get Weston and acceleration working with wayland, choose rpi-userland as well.
 Optionally you can test it by installing some demos too.
-I have provided one with wayland support.
+Provided userland ships with wayland EGL support. Thanks tomeuv. ( Source: https://github.com/tomeuv/userland/tree/wayland )
