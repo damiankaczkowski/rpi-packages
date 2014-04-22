@@ -10,13 +10,28 @@ Depencies
 Yes, it's not quite that simple. To get everything working, you need somethings:<br/>
  1) packages feed must be installed<br/>
  2) Some patching has to be done<br/>
- 
+
+Incompatibilities
+=================
+ 1) gcc in packages tree ( read: How to include this package tree in my trunk sources? )<br/>
+ 2) xorg package feed ( disabled by default in openwrt trunk tree )<br/>
+
 Patches?
 ========
 Yes, most of them are just updates to "old" not yet updated versions in the openwrt trunk and some or minor enhancements and some are add-ons. All patches are available from here:<br/>
 https://github.com/rpi-openwrt/patches<br/>
 
-Or you can download them from OpenWrt Trac one by one and also see the explanation of the patch, list of patches and Trac URLs are provided in next chapters of this ReadMe.<br/>
+Or you can download them from OpenWrt Trac one by one and also see the explanation of the patch,<br/>
+list of patches and Trac URLs are provided in next two<br/>
+chapters of this ReadMe.<br/>
+
+How to obtain dependant package tree?
+=====================================
+Use following 2 commands in your trunk's root:<br/>
+ ./scripts/feeds update -a
+ ./scripts/feeds install -a -p packages
+
+This way you can also install other feeds, like LuCi feed.
 
 Patches from Trac against base system
 =====================================
