@@ -9,12 +9,13 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/autotools.mk
 
 PKG_NAME:=elementary
-PKG_VERSION:=1.8.4
+PKG_VERSION:=1.9.3
+PKG_MAJOR_VERSION:=1.9
 PKG_RELEASE=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://download.enlightenment.org/rel/libs/elementary/
-PKG_MD5SUM:=898d0ee0e18078640948fa5d04d56efe
+PKG_MD5SUM:=cc75bb1c7c4c49de120ec33e413130ce
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_BUILD_DEPENDS:= \
 	libefl/host \
@@ -194,12 +195,12 @@ endef
 
 define Package/elementary/install
 	$(INSTALL_DIR) $(1)/usr/lib \
-		$(1)/usr/lib/elementary/modules/access_output/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/elementary/modules/datetime_input_ctxpopup/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/elementary/modules/prefs/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/elementary/modules/test_entry/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/elementary/modules/test_map/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/edje/modules/elm/linux-gnu-arm-$(PKG_VERSION) \
+		$(1)/usr/lib/elementary/modules/access_output/v-$(PKG_VERSION) \
+		$(1)/usr/lib/elementary/modules/datetime_input_ctxpopup/v-$(PKG_VERSION) \
+		$(1)/usr/lib/elementary/modules/prefs/v-$(PKG_VERSION) \
+		$(1)/usr/lib/elementary/modules/test_entry/v-$(PKG_VERSION) \
+		$(1)/usr/lib/elementary/modules/test_map/v-$(PKG_VERSION) \
+		$(1)/usr/lib/edje/modules/elm/v-$(PKG_MAJOR_VERSION) \
 		$(1)/usr/share/applications \
 		$(1)/usr/share/icons \
 		$(1)/usr/share/elementary/config \
@@ -209,21 +210,21 @@ define Package/elementary/install
 		$(1)/usr/share/elementary/themes
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
 	
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/access_output/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/elementary/modules/access_output/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/datetime_input_ctxpopup/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/elementary/modules/datetime_input_ctxpopup/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/prefs/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/elementary/modules/prefs/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/prefs/linux-gnu-arm-$(PKG_VERSION)/elm_prefs_swallow.edj \
-		$(1)/usr/lib/elementary/modules/prefs/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/test_entry/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/elementary/modules/test_entry/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/test_map/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/elementary/modules/test_map/linux-gnu-arm-$(PKG_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/access_output/v-$(PKG_VERSION)/module.so \
+		$(1)/usr/lib/elementary/modules/access_output/v-$(PKG_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/datetime_input_ctxpopup/v-$(PKG_VERSION)/module.so \
+		$(1)/usr/lib/elementary/modules/datetime_input_ctxpopup/v-$(PKG_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/prefs/v-$(PKG_VERSION)/module.so \
+		$(1)/usr/lib/elementary/modules/prefs/v-$(PKG_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/prefs/v-$(PKG_VERSION)/elm_prefs_swallow.edj \
+		$(1)/usr/lib/elementary/modules/prefs/v-$(PKG_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/test_entry/v-$(PKG_VERSION)/module.so \
+		$(1)/usr/lib/elementary/modules/test_entry/v-$(PKG_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/elementary/modules/test_map/v-$(PKG_VERSION)/module.so \
+		$(1)/usr/lib/elementary/modules/test_map/v-$(PKG_VERSION)/
 
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/edje/modules/elm/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/edje/modules/elm/linux-gnu-arm-$(PKG_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/edje/modules/elm/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/edje/modules/elm/v-$(PKG_MAJOR_VERSION)/
 
 	$(CP) -R $(PKG_INSTALL_DIR)/usr/share/applications/** $(1)/usr/share/applications/
 	$(CP) -R $(PKG_INSTALL_DIR)/usr/share/icons/** $(1)/usr/share/icons/
