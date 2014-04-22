@@ -5,28 +5,16 @@
 # See /LICENSE for more information.
 #
 include $(TOPDIR)/rules.mk
+
 PKG_NAME:=gcc
+PKG_VERSION:=4.8.3
+PKG_REV:=4.8-2014.01
 PKG_RELEASE:=1
-
-ifeq ($(CONFIG_GCC_VERSION),"4.6-linaro")
-	PKG_REV:=4.6-2013.05
-	PKG_VERSION:=4.6.4
-	PKG_VERSION_MAJOR:=4.6
-	PKG_MD5SUM:=26b48802ae1203cd99415026fbf56ed7
-	PKG_COMP:=bz2
-	PATCH_DIR:=./patches-4.6
-else
-	PKG_REV:=4.8-2013.12
-	PKG_VERSION:=4.8.3
-	PKG_VERSION_MAJOR:=4.8
-	PKG_MD5SUM:=bd7a22ff4d1b6bb4824ef908e07bde66
-	PKG_COMP:=xz
-	PATCH_DIR:=./patches-4.8
-endif
-
-PKG_SOURCE_URL:=http://launchpad.net/gcc-linaro/$(PKG_VERSION_MAJOR)/$(PKG_REV)/+download/
-PKG_SOURCE:=gcc-linaro-$(PKG_REV).tar.$(PKG_COMP)
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-linaro-$(PKG_REV)
+PKG_MD5SUM:=b8bc08b05ff079dcdc020336a67ca4e1
+PKG_SOURCE_URL:=http://launchpad.net/gcc-linaro/4.8/$(PKG_REV)/+download/
+PKG_SOURCE:=gcc-linaro-$(PKG_REV).tar.xz
+PKG_BUILD_DIR:=$(BUILD_DIR)/gcc-linaro-$(PKG_REV)/
+PATCH_DIR:=./patches-4.8
 PKG_INSTALL:=1
 PKG_FIXUP:=libtool
 
@@ -37,7 +25,7 @@ define Package/gcc
   CATEGORY:=Raspberry Pi
   SUBMENU:=Development
   TITLE:=gcc
-  DEPENDS:=+mprf +binutils +objdump +libstdcpp +libmpc +zlib @TARGET_brcm2708 @USE_UCLIBC @(!GCC_USE_VERSION_4_8_0||BROKEN)
+  DEPENDS:=+mpfr +binutils +objdump +libstdcpp +libmpc +zlib @TARGET_brcm2708 @USE_UCLIBC @GCC_USE_VERSION_4_8_LINARO
 endef
 
 define Package/gcc/description
