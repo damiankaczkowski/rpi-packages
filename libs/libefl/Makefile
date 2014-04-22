@@ -9,6 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libefl
 PKG_VERSION:=1.9.3
+PKG_MAJOR_VERSION:=1.9
 PKG_RELEASE=1
 
 PKG_SOURCE:=efl-$(PKG_VERSION).tar.gz
@@ -180,59 +181,59 @@ endef
 
 define Package/libefl/install
 	$(INSTALL_DIR) $(1)/usr/lib \
-		$(1)/usr/lib/ecore/system/upower/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/ecore_evas/engines/extn/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/ecore_evas/engines/fb/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/ecore_evas/engines/wayland/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/ecore_imf/modules/wayland/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/edje/modules/emotion/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/edje/utils/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/eeze/modules/sensor/fake/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/eeze/modules/sensor/udev/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/efreet/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/ethumb/modules/emotion/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/ethumb_client/utils/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/evas/cserve2/bin/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/evas/modules/engines/fb/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/evas/modules/engines/wayland_egl/linux-gnu-arm-$(PKG_VERSION) \
-		$(1)/usr/lib/evas/modules/engines/wayland_shm/linux-gnu-arm-$(PKG_VERSION)
+		$(1)/usr/lib/ecore/system/upower/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/ecore_evas/engines/extn/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/ecore_evas/engines/fb/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/ecore_evas/engines/wayland/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/ecore_imf/modules/wayland/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/edje/modules/emotion/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/edje/utils/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/eeze/modules/sensor/fake/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/eeze/modules/sensor/udev/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/efreet/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/ethumb/modules/emotion/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/ethumb_client/utils/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/evas/cserve2/bin/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/evas/modules/engines/fb/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/evas/modules/engines/wayland_egl/v-$(PKG_MAJOR_VERSION) \
+		$(1)/usr/lib/evas/modules/engines/wayland_shm/v-$(PKG_MAJOR_VERSION)
 
 	$(CP) -R $(PKG_INSTALL_DIR)/usr/lib/*.so* $(1)/usr/lib/
 
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore/system/upower/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/ecore/system/upower/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore_evas/engines/extn/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/ecore_evas/engines/extn/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore_evas/engines/fb/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/ecore_evas/engines/fb/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore_evas/engines/wayland/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/ecore_evas/engines/wayland/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore_imf/modules/wayland/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/ecore_evas/engines/wayland/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/edje/modules/emotion/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/edje/modules/emotion/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/edje/utils/linux-gnu-arm-$(PKG_VERSION)/epp \
-		$(1)/usr/lib/edje/utils/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/eeze/modules/sensor/udev/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/eeze/modules/sensor/udev/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/eeze/modules/sensor/fake/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/eeze/modules/sensor/fake/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/efreet/linux-gnu-arm-$(PKG_VERSION)/* \
-		$(1)/usr/lib/efreet/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ethumb/modules/emotion/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/ethumb/modules/emotion/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ethumb/modules/emotion/linux-gnu-arm-$(PKG_VERSION)/template.edj \
-		$(1)/usr/lib/ethumb/modules/emotion/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ethumb_client/utils/linux-gnu-arm-$(PKG_VERSION)/* \
-		$(1)/usr/lib/ethumb_client/utils/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/evas/cserve2/bin/linux-gnu-arm-$(PKG_VERSION)/* \
-		$(1)/usr/lib/evas/cserve2/bin/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/evas/modules/engines/fb/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/evas/modules/engines/fb/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/evas/modules/engines/wayland_egl/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/evas/modules/engines/wayland_egl/linux-gnu-arm-$(PKG_VERSION)/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/evas/modules/engines/wayland_shm/linux-gnu-arm-$(PKG_VERSION)/module.so \
-		$(1)/usr/lib/evas/modules/engines/wayland_shm/linux-gnu-arm-$(PKG_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore/system/upower/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/ecore/system/upower/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore_evas/engines/extn/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/ecore_evas/engines/extn/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore_evas/engines/fb/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/ecore_evas/engines/fb/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore_evas/engines/wayland/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/ecore_evas/engines/wayland/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ecore_imf/modules/wayland/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/ecore_evas/engines/wayland/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/edje/modules/emotion/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/edje/modules/emotion/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/edje/utils/v-$(PKG_MAJOR_VERSION)/epp \
+		$(1)/usr/lib/edje/utils/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/eeze/modules/sensor/udev/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/eeze/modules/sensor/udev/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/eeze/modules/sensor/fake/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/eeze/modules/sensor/fake/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/efreet/v-$(PKG_MAJOR_VERSION)/* \
+		$(1)/usr/lib/efreet/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ethumb/modules/emotion/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/ethumb/modules/emotion/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ethumb/modules/emotion/v-$(PKG_MAJOR_VERSION)/template.edj \
+		$(1)/usr/lib/ethumb/modules/emotion/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/ethumb_client/utils/v-$(PKG_MAJOR_VERSION)/* \
+		$(1)/usr/lib/ethumb_client/utils/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/evas/cserve2/bin/v-$(PKG_MAJOR_VERSION)/* \
+		$(1)/usr/lib/evas/cserve2/bin/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/evas/modules/engines/fb/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/evas/modules/engines/fb/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/evas/modules/engines/wayland_egl/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/evas/modules/engines/wayland_egl/v-$(PKG_MAJOR_VERSION)/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/evas/modules/engines/wayland_shm/v-$(PKG_MAJOR_VERSION)/module.so \
+		$(1)/usr/lib/evas/modules/engines/wayland_shm/v-$(PKG_MAJOR_VERSION)/
 
 	$(INSTALL_DIR) $(1)/usr/share/dbus-1/services \
 		$(1)/usr/share/ecore \
