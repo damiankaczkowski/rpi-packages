@@ -39,15 +39,15 @@ Use following 2 commands in your trunk's root:<br/>
 
 This way you can also install other feeds, like LuCi feed.
 
-Patches from Trac against base system
-=====================================
+Patches against base system
+===========================
  * openwrt-populatefs-fixed.patch: https://dev.openwrt.org/raw-attachment/ticket/14770/openwrt-populatefs-fixed.patch<br/>
  * xorg-macros-upgrade.patch: https://dev.openwrt.org/raw-attachment/ticket/14699/xorg-macros-upgrade.patch<br/>
  * udev-add-hostbuild.patch: https://dev.openwrt.org/raw-attachment/ticket/15645/udev-add-hostbuild.patch<br/>
  * lua-add-fpic.patch: https://dev.openwrt.org/raw-attachment/ticket/15647/lua-add-fpic.patch<br/>
 
-Patches from Trac against packages tree
-=======================================
+Patches against packages tree
+=============================
  * diffutils.patch: https://dev.openwrt.org/raw-attachment/ticket/14641/diffutils.patch<br/>
  * dialog-v2.patch: https://dev.openwrt.org/raw-attachment/ticket/14799/dialog-v2.patch<br/>
  * dbus.patch: https://dev.openwrt.org/raw-attachment/ticket/15646/dbus.patch<br/>
