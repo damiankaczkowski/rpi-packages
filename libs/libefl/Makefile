@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libefl
-PKG_VERSION:=1.8.4
+PKG_VERSION:=1.9.3
 PKG_RELEASE=1
 
 PKG_SOURCE:=efl-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://download.enlightenment.org/rel/libs/efl/
-PKG_MD5SUM:=a23c2b6c4a0a0370c09d4763c6642810
+PKG_MD5SUM:=102acebaf453346d745b0974f736a5e6
 PKG_BUILD_DIR:=$(BUILD_DIR)/efl-$(PKG_VERSION)
 PKG_INSTALL:=1
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/efl-$(PKG_VERSION)
@@ -37,7 +37,7 @@ define Package/libefl
   SUBMENU:=Libraries
   TITLE:=EFL Libraries
   DEPENDS:=+rpi-userland +libwayland +liblua +libbullet +libdbus +libfreetype \
-	+harfbuzz +libjpeg +libpng +libstdcpp +udev +libxkbcommon +zlib
+	+harfbuzz +fontconfig +libjpeg +libpng +libstdcpp +udev +libxkbcommon +zlib
   URL:=http://www.enlightenment.org
 endef
 
@@ -68,13 +68,13 @@ WITH_FEATURES:= --disable-nls \
 	--disable-systemd \
 	--disable-sdl \
 	--disable-drm \
-	--disable-fontconfig \
 	--disable-fribidi \
 	--disable-tizen \
-	--disable-eo-id \
+	--enable-eo-id \
 	--enable-harfbuzz \
 	--disable-pixman \
 	--disable-gstreamer \
+	--disable-gstreamer1 \
 	--disable-tslib \
 	--disable-audio \
 	--disable-pulseaudio \
@@ -86,7 +86,7 @@ WITH_FEATURES:= --disable-nls \
 	--disable-ibus \
 	--disable-libmount \
 	--enable-physics \
-	--enable-tile-rotate \
+	--disable-tile-rotate \
 	--disable-multisense \
 	--disable-xine \
 	--disable-v4l2 \
@@ -101,7 +101,9 @@ WITH_FEATURES:= --disable-nls \
 	--without-mount \
 	--without-umount \
 	--without-eject \
-	--disable-always-build-examples
+	--disable-always-build-examples \
+	--enable-lua-old \
+	--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-aaa
 
 HOST_CONFIGURE_VARS+= \
 	PKG_CONFIG_PATH="$(STAGING_DIR_HOST)/lib/pkgconfig:$(HOST_BUILD_DIR)/pkgconfig"
@@ -133,6 +135,7 @@ define Host/Configure
 		$(HOST_CONFIGURE_VARS) ./configure \
 		$(HOST_CONFIGURE_ARGS) $(WITH_FEATURES) \
 		--disable-fb \
+		--disable-fontconfig \
 		--with-opengl=es; \
 	)
 endef
@@ -151,6 +154,7 @@ define Build/Configure
 	(cd $(PKG_BUILD_DIR); \
 		$(CONFIGURE_VARS) ./configure \
 		$(CONFIGURE_ARGS) $(WITH_FEATURES) \
+		--enable-fontconfig \
 		--enable-wayland \
 		--enable-fb \
 		--enable-egl \
