@@ -9,7 +9,11 @@ Depencies
 =========
 Yes, it's not quite that simple. To get everything working, you need somethings:<br/>
  1) packages feed must be installed<br/>
- 2) Some patching has to be done<br/>
+ 2) gcc in packages <b>should</b> be disabled<br/>
+ 3) Apply patches against base system<br/>
+ 4) Apply patches against packages tree<br />
+
+This is also the recommended order but your mileage may vary a bit.
 
 Incompatibilities
 =================
