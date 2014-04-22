@@ -1,11 +1,11 @@
---- a/src/Makefile.am
-+++ b/src/Makefile.am
-@@ -41,7 +41,7 @@
- protocoldir = $(top_srcdir)/protocol
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -60,7 +60,7 @@
+ pkgconfig_DATA += src/wayland-client.pc src/wayland-server.pc
  
  if ENABLE_SCANNER
--wayland_scanner = $(top_builddir)/src/wayland-scanner
+-wayland_scanner = $(top_builddir)/wayland-scanner
 +wayland_scanner = $(TOPDIR)/staging_dir/host/bin/wayland-scanner
- else
- wayland_scanner = wayland-scanner
- endif
+ bin_PROGRAMS = wayland-scanner
+ wayland_scanner_SOURCES = src/scanner.c
+ wayland_scanner_LDADD = $(EXPAT_LIBS) libwayland-util.la
