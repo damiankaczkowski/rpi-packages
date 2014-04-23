@@ -75,7 +75,7 @@ src-git raspberry https://github.com/rpi-openwrt/rpi-packages.git
 And then just use:<br />
 <pre>
 ./scripts/feeds update raspberry
-./scripts/feeds install -p raspberry
+./scripts/feeds install -a -p raspberry
 </pre>
  
 Hints for compiling?
