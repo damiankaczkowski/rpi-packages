@@ -9,7 +9,7 @@ Depencies
 =========
 Yes, it's not quite that simple. To get everything working, you need somethings:<br/>
  * packages feed must be installed<br/>
- * gcc in packages <b>should</b> be disabled<br/>
+ * gcc in packages <b>should</b> be removed<br/>
  * Apply patches against base system<br/>
  * Apply patches against packages tree<br />
 
@@ -35,11 +35,22 @@ How to obtain dependant package tree?
 =====================================
 Use following 2 commands in your trunk's root:<br/>
 <pre>
-./scripts/feeds update -a
+./scripts/feeds update packages
+rm -rf feeds/packages/devel/gcc
+rm -rf feeds/packages.tmp
+./scripts/feeds update -i packages
 ./scripts/feeds install -a -p packages
 </pre>
 
-This way you can also install other feeds, like LuCi feed.
+This will install packages feed and remove gcc from it, as there can be only one gcc package.
+Without GCC you lack some other packages as well, that are dependant on it, like autoconf and automake.
+
+You can also install other feeds now, check your feeds.conf.default in trunk's root to see available feeds.
+For example, to install LuCi, do the following:
+<pre>
+./scripts/feeds update luci
+./scripts/feeds install -a -p luci
+</pre>
 
 Patches against base system
 ===========================
@@ -62,18 +73,10 @@ If you patched from rpi-openwrt/patches, you should be all set, if not - Add fol
 src-git raspberry https://github.com/rpi-openwrt/rpi-packages.git
 </pre>
 
-This is important, you should do this <b>after</b> installing packages tree and <b>before</b> installing <i>rpi-packages</i> tree. Otherwise, gcc won't show, as there is a duplicate package in <i>normal</i> packages.<br/>
-Remove gcc from normal packages (execute this in your trunk's root):<br />
-<pre>
-rm package/feeds/packages/gcc
-</pre>
-
-Without GCC you lack some other packages as well, that are dependant on it, like autoconf and automake.
-
 And then just use:<br />
 <pre>
-./scripts/feeds update -a
-./scripts/feeds install -a -p raspberry
+./scripts/feeds update raspberry
+./scripts/feeds install -p raspberry
 </pre>
  
 Hints for compiling?
