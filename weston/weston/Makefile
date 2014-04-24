@@ -44,9 +44,9 @@ define Package/weston/config
 	source "$(SOURCE)/Config.in"
 endef
 
-TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include/interface/vcos/pthreads -I$(STAGING_DIR)/usr/include/interface/vchiq_arm -DUSE_VCHIQ_ARM
-TARGET_LDFLAGS += -rdynamic
-MAKE_VARS += LIBS="-lEGL -lGLESv2 -lbcm_host -lvcos" 
+TARGET_CFLAGS+= -I$(STAGING_DIR)/usr/include/interface/vcos/pthreads -I$(STAGING_DIR)/usr/include/interface/vchiq_arm -DUSE_VCHIQ_ARM
+TARGET_LDFLAGS+= -rdynamic
+CONFIGURE_VARS+= LIBS="-lEGL -lGLESv2 -lbcm_host -lvcos"
 
 CONFIGURE_ARGS+= \
 	--disable-setuid-install --disable-drm-compositor --disable-x11-compositor \
@@ -103,6 +103,11 @@ else
 endif
 
 CONFIGURE_ARGS+= --enable-rpi-compositor WESTON_NATIVE_BACKEND="rpi-backend.so"
+
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	echo "#define BUILD_ID \"$(PKG_SOURCE_VERSION)-git ($(PKG_VERSION)) (OpenWrt build)\"" > $(PKG_BUILD_DIR)/src/git-version.h
+endef
 
 define Package/weston/install
 	$(INSTALL_DIR) $(1)/usr/bin \
