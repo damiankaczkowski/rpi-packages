@@ -17,6 +17,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://download.enlightenment.org/rel/libs/elementary/
 PKG_MD5SUM:=cc75bb1c7c4c49de120ec33e413130ce
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION)
+HOST_BUILD_DEPENDS:=libefl/host
 PKG_BUILD_DEPENDS:= \
 	libefl/host \
 	elementary/host
