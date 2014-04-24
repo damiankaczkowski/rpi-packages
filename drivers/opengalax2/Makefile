@@ -26,7 +26,7 @@ define Package/opengalax2
   CATEGORY:=Raspberry Pi
   SUBMENU:=Drivers
   TITLE:=OpenGalax2 - touchscreen daemon utilizing tslib
-  DEPENDS:=+tslib
+  DEPENDS:=+tslib +kmod-uinput
   URL:=https://github.com/oskarirauta/opengalax2
 endef
 
