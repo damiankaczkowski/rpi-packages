@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tslib
 PKG_VERSION:=1.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 PKG_REV:=fff6c8cb668b278b03690a7ae74a080a8066b2e5
 
 PKG_SOURCE:=$(PKG_REV).tar.gz
@@ -33,6 +33,12 @@ define Package/tslib/description
   tslib is an abstraction layer for touchscreen panel events,
   as well as a filter stack for the manipulation of those events.
   Examples of implemented filters include jitter smoothing and the calibration transform.
+endef
+
+define Package/tslib/conffiles
+	/etc/tslib-env.sh
+	/etc/ts.conf
+	/etc/pointercal
 endef
 
 define Build/Configure
