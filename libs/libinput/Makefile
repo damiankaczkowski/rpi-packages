@@ -41,10 +41,6 @@ endef
 
 TARGET_CFLAGS += -std=gnu99
 
-TARGET_CONFIGURE_OPTS+= \
-	LIBEVDEV_CFLAGS="-I${STAGING_DIR}/usr/include/libevdev-1.0/" \
-	LIBEVDEV_LIBS="-L${STAGING_DIR}/usr/lib -levdev"
-
 CONFIGURE_ARGS+= --disable-documentation --disable-tests
 
 define Package/libinput/install
@@ -53,8 +49,13 @@ define Package/libinput/install
 endef
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include
+	$(INSTALL_DIR) \
+		$(1)/usr/include \
+		$(1)/usr/lib \
+		$(1)/usr/lib/pkgconfig
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/libinput.h $(1)/usr/include/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libinput.so** $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/** $(1)/usr/lib/pkgconfig/
 endef
 
 $(eval $(call BuildPackage,libinput))

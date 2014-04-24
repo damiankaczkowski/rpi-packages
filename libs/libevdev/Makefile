@@ -51,10 +51,12 @@ endef
 define Build/InstallDev
 	$(INSTALL_DIR) \
 		$(1)/usr/include/libevdev-1.0/libevdev \
-		$(1)/usr/lib
+		$(1)/usr/lib \
+		$(1)/usr/lib/pkgconfig
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/libevdev-1.0/libevdev/libevdev-uinput.h $(1)/usr/include/libevdev-1.0/libevdev/
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/libevdev-1.0/libevdev/libevdev.h $(1)/usr/include/libevdev-1.0/libevdev/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libevdev.so** $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/** $(1)/usr/lib/pkgconfig/
 endef
 
 $(eval $(call BuildPackage,libevdev))
