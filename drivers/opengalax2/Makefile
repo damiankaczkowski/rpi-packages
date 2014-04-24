@@ -50,7 +50,7 @@ endef
 define Package/opengalax2/install
 	$(INSTALL_DIR) $(1)/usr/bin $(1)/etc/init.d
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opengalax2 $(1)/usr/bin/
-	$(INSTALL_BIN) ./files/opengalax2.init $(1)/etc/init.d/
+	$(INSTALL_BIN) ./files/opengalax2.init $(1)/etc/init.d/opengalax2
 endef
 
 $(eval $(call BuildPackage,opengalax2))
