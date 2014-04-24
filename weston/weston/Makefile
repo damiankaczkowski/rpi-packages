@@ -31,7 +31,8 @@ define Package/weston
 	+libmtdev +libjpeg +xkeyboard-config \
 	+WESTON_ENABLE_LIBUNWIND:libunwind \
 	+WESTON_ENABLE_DBUS:dbus \
-	+WESTON_ENABLE_WESTON_LAUNCH:libpam
+	+WESTON_ENABLE_WESTON_LAUNCH:libpam \
+	+WESTON_ENABLE_LIBINPUT:libinput
   URL:=http://cgit.freedesktop.org/wayland/weston
   MENU:=1
 endef
@@ -82,6 +83,12 @@ ifeq ($(CONFIG_WESTON_ENABLE_EGL),y)
 	CONFIGURE_ARGS+= --enable-egl --enable-simple-egl-clients
 else
 	CONFIGURE_ARGS+= --disable-egl --disable-simple-egl-clients
+endif
+
+ifeq ($(CONFIG_WESTON_ENABLE_LIBINPUT),y)
+	CONFIGURE_ARGS+= --enable-libinput-backend
+else
+	CONFIGURE_ARGS+= --disable-libinput-backend
 endif
 
 ifeq ($(CONFIG_WESTON_ENABLE_WAYLAND_COMPOSITOR),y)

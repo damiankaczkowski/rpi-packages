@@ -3,10 +3,15 @@ menu "Configuration"
 
 config WESTON_ENABLE_EGL
 	bool "Enable EGL"
-	depends on PACKAGE_rpi-userland
 	default y
 	help
-	 Currently EGL built Weston doesn not work. It builds just fine, but screen will be blank. But you can enable egl here if you want to.
+	 Enables EGL acceleration of Weston.
+
+config WESTON_ENABLE_LIBINPUT
+	bool "Enable libinput backend"
+	default y
+	help
+	 Enables libinput backend for Weston. If disabled, uses internal input handling.
 
 config WESTON_ENABLE_WAYLAND_COMPOSITOR
 	bool "Build Wayland Compositor"
