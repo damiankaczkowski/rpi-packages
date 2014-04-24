@@ -12,5 +12,5 @@ start() {
 }
 
 stop() {
-	[ -f $PID_FILE ] && kill $(cat $(PID_FILE)
+	[ -f $PID_FILE ] && kill $(cat $(PID_FILE))
 }
