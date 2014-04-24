@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=opengalax2
 PKG_VERSION:=0.9
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 PKG_REV:=fe4cb84f775e26a447602102914da9713dd8bc9d
 
 PKG_SOURCE:=$(PKG_REV).tar.gz
@@ -50,7 +50,7 @@ endef
 define Package/opengalax2/install
 	$(INSTALL_DIR) $(1)/usr/bin $(1)/etc/init.d
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opengalax2 $(1)/usr/bin/
-	$(INSTALL_BIN) ./files/opengalax2.init $(1)/usr/bin/
+	$(INSTALL_BIN) ./files/opengalax2.init $(1)/etc/init.d/
 endef
 
 $(eval $(call BuildPackage,opengalax2))
