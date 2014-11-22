@@ -78,8 +78,6 @@ Now you should be all set to continue with normal instructions on how to build y
  
 Hints for compiling?
 ====================
-To get everything working perfect, you should make sure you are using <b>gcc-linaro 4.8.x</b> as your compiler and for binutils version choose <b>linaro</b> version as well. Especially for development environment, this is very crucial step. Compiling gcc is available currently <b>only for targets with following settings</b>: uclibc and gcc-linaro-4.8
-
 Sometimes, there are issues when trying to compile libefl and/or Elementary. Luckily, there's also a fix for that, although it needs a bit manual labor. This is because everytime, for some reason, everything isn't compiled in the right order. I got around this issue by noticing the error and then before retrying, I executed following commands:<br/>
 <pre>
 make package/system/udev/host/compile V=99
@@ -104,8 +102,12 @@ Optionally you can test it by installing some demos too. Although, userland is m
 Provided userland ships with wayland EGL support. Thanks tomeuv.<br/>
 ( Source: https://github.com/tomeuv/userland/tree/wayland )
 
-About development environment
-=============================
-It is highly recommended that you disable stripping of symbols, otherwise, it's very likely that you run into problems. Switch for disabling stripping is located in:<br/>
-Global build settings->Binary stripping method ( set to none )
-and also make sure you have unchecked other options for stripping as well.
+Future changes
+==============
+ * Update rpi-userland ( to latest stock version )
+ * Remove Weston EGL support
+ * remove Wayland EGL support
+ * remove EFL EGL support
+ * remove Elementary EGL support
+
+Wayland EGL enabled userland hasn't seem to catched wind and hasn't been updated in a long time. Considering this soon as deprecated. Also there has been compilation issues and issues that it doesn't work very well + app development for Weston hasn't started very well..
