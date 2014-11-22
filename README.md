@@ -9,7 +9,6 @@ Depencies
 =========
 Yes, it's not quite that simple. To get everything working, you need somethings:<br/>
  * packages feed must be installed<br/>
- * gcc in packages <b>should</b> be removed<br/>
  * Apply patches against base system<br/>
  * Apply patches against packages tree<br />
 
@@ -17,7 +16,6 @@ This is also the recommended order but your mileage may vary a bit.
 
 Incompatibilities
 =================
- * gcc in packages tree ( read: <a href="#how-to-include-this-package-tree-in-my-trunk-sources">How to include this package tree in my trunk sources?</a> )<br/>
  * xorg package feed ( disabled by default in openwrt trunk tree )<br/>
 
 Patches?
