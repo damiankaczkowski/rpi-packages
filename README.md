@@ -10,9 +10,6 @@ Depencies
 Yes, it's not quite that simple. To get everything working, you need somethings:<br/>
  * packages feed must be installed<br/>
  * Apply patches against base system<br/>
- * Apply patches against packages tree<br />
-
-This is also the recommended order but your mileage may vary a bit.
 
 Incompatibilities
 =================
@@ -57,10 +54,6 @@ Patches against base system
  * udev-add-hostbuild.patch: https://dev.openwrt.org/raw-attachment/ticket/15645/udev-add-hostbuild.patch<br/>
  * lua-add-fpic.patch: https://dev.openwrt.org/raw-attachment/ticket/15647/lua-add-fpic.patch<br/>
 
-Patches against packages tree
-=============================
- * dbus.patch: https://dev.openwrt.org/raw-attachment/ticket/15646/dbus.patch<br/>
-
 How to include this package tree in my trunk sources?
 =====================================================
 If you patched from rpi-openwrt/patches, you should be all set, if not - Add following line to your <b>trunk/feeds.conf.default</b>:<br />
@@ -102,8 +95,8 @@ Optionally you can test it by installing some demos too. Although, userland is m
 Provided userland ships with wayland EGL support. Thanks tomeuv.<br/>
 ( Source: https://github.com/tomeuv/userland/tree/wayland )
 
-Future changes
-==============
+Future plans
+============
  * Update rpi-userland ( to latest stock version )
  * Remove Weston EGL support
  * remove Wayland EGL support
