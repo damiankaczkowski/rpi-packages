@@ -23,8 +23,9 @@ PKG_BUILD_DEPENDS:= \
 
 include $(INCLUDE_DIR)/package.mk
 
-PROTOS:=composite damage dpms glx randr record render res screensaver shape \
-        shm sync xevie xf86dri xfixes xinerama xprint xtest xvmc xv
+PROTOS:=composite damage dpms dri2 dri3 glx present randr record render res \
+	screensaver shape shm sync xevie xf86dri xfixes xinerama xprint \
+	xtest xv xvmc
 
 define Package/libxcb
   SECTION:=rpi-libraries
@@ -38,14 +39,6 @@ endef
 define Package/libxcb/description
 libxcb provides an interface to the X Window System protocol, which
 replaces the current Xlib interface.
-endef
-
-define Package/libxcb-xlib
-  SECTION:=rpi-libraries
-  CATEGORY:=Raspberry Pi
-  SUBMENU:=Libraries
-  TITLE:=libxcb-xlib
-  DEPENDS:=+libxcb
 endef
 
 define Package/libxcb-proto/Default
@@ -85,13 +78,6 @@ define Package/libxcb/install
 		$(1)/usr/lib/
 endef
 
-define Package/libxcb-xlib/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) \
-		$(PKG_INSTALL_DIR)/usr/lib/libxcb-xlib.so* \
-		$(1)/usr/lib/
-endef
-
 define Package/libxcb-proto/install/Default
 define Package/libxcb-$(1)/install
 	$(INSTALL_DIR) $$(1)/usr/lib
@@ -104,5 +90,4 @@ endef
 $(foreach proto,$(PROTOS),$(eval $(call Package/libxcb-proto/install/Default,$(proto))))
 
 $(eval $(call BuildPackage,libxcb))
-$(eval $(call BuildPackage,libxcb-xlib))
 $(foreach proto,$(PROTOS),$(eval $(call BuildPackage,libxcb-$(proto))))
