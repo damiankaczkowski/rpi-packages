@@ -40,6 +40,7 @@ CONFIGURE_ARGS+= \
 CONFIGURE_VARS+= \
 	ac_cv_prog_HASDOCBOOK=no \
 
+TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include/freetype2
 TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
 
 define Build/Compile
