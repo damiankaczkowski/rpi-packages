@@ -61,7 +61,6 @@ Patches against base system
 
 Patches against packages tree
 =============================
- * diffutils.patch: https://dev.openwrt.org/raw-attachment/ticket/14641/diffutils.patch<br/>
  * dialog-v2.patch: https://dev.openwrt.org/raw-attachment/ticket/14799/dialog-v2.patch<br/>
  * dbus.patch: https://dev.openwrt.org/raw-attachment/ticket/15646/dbus.patch<br/>
 
