@@ -37,7 +37,8 @@ drawing operations can be transformed by any affine transformation
 (scale, rotation, shear, etc.).
 endef
 
-TARGET_CFLAGS+= $(FPIC) -D_REENTRANT -D_THREAD_SAFE -D_THREADSAFE -DUSE_VCHIQ_ARM
+TARGET_CFLAGS+= $(FPIC) -D_REENTRANT -D_THREAD_SAFE -D_THREADSAFE \
+		-DUSE_VCHIQ_ARM -I$(STAGING_DIR)/usr/include/freetype2
 
 CONFIGURE_VARS+= \
 		FONTCONFIG_LIBS="-lfreetype -lfontconfig -lz -lexpat" \
