@@ -88,3 +88,6 @@ I would recommend setting following to Yes.<br />
 Installing rpi-update is important. <del>Stock OpenWrt ships with outdated firmware which will cause troubles when using graphic modes and acceleration.</del><br/>
 It seems that OpenWrt has recently updated their firmware for Raspberry Pi, still, installing rpi-update and using it is not a bad idea. Regarding to one article I once read online, using old firmware might in worst case scenario even cause real damage to the rpi's hardware. It doesn't harm to update, so do it after first boot.
 
+Try without compiling
+=====================
+New repository has been setup at http://rpi-openwrt.github.io which provides a generated image and hosts a package repository containing these packages.
