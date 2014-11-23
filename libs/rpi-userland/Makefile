@@ -175,6 +175,7 @@ define Build/Configure
 		$(CMAKE_OPTIONS) \
 		../../.. \
 	)
+endef
 
 define Build/Compile
 	$(MAKE) -j 6 -C $(PKG_BUILD_DIR)/build/arm-linux/release
