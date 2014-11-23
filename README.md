@@ -3,8 +3,6 @@ rpi-packages
 
 This is a package feed for OpenWRT specifically tailored for Raspberry Pi, including some rpi specific tools and extra packages that are supposed to bring OpenWRT on Raspberry Pi to the level with other available Raspberry Pi distributions.
 
-These packages include all kinds of goodies including userland and EGL accelerated Weston..
-
 Depencies
 =========
 Yes, it's not quite that simple. To get everything working, you need somethings:<br/>
@@ -94,13 +92,3 @@ Also, to get Weston and acceleration working with wayland, choose rpi-userland a
 Optionally you can test it by installing some demos too. Although, userland is marked as a dependancy when it's needed so you don't have to install it straight to image, for example, if you are planning to build a minimal image, that can be easily archieved with rpi-openwrt.. While still holding a lot of potentiality and modularity.
 Provided userland ships with wayland EGL support. Thanks tomeuv.<br/>
 ( Source: https://github.com/tomeuv/userland/tree/wayland )
-
-Future plans
-============
- * Update rpi-userland ( to latest stock version )
- * Remove Weston EGL support
- * remove Wayland EGL support
- * remove EFL EGL support
- * remove Elementary EGL support
-
-Wayland EGL enabled userland hasn't seem to catched wind and hasn't been updated in a long time. Considering this soon as deprecated. Also there has been compilation issues and issues that it doesn't work very well + app development for Weston hasn't started very well..
