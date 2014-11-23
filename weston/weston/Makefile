@@ -8,15 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weston
-PKG_VERSION:=20140422
+PKG_VERSION:=20141123
 PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git://anongit.freedesktop.org/wayland/weston
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=4c3661fd7bd6a9970a9cc6b7f9573b8617401bd8
+PKG_SOURCE_VERSION:=b4e976ab56776f3bb21b18979fbb0a9ec04001b9
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
-PKG_MD5SUM:=f2c2353c10fcb897661edbce0f812a93
+PKG_MD5SUM:=34f748d40ec24c99ba883ee1af6bb160
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
 
@@ -26,13 +26,12 @@ define Package/weston
   SECTION:=rpi
   CATEGORY:=Raspberry Pi
   TITLE:=Weston
-  DEPENDS:=+rpi-userland +libwayland +libXcursor +cairo +libxcb +libxcb-composite \
+  DEPENDS:=+libwayland +libXcursor +cairo +libxcb +libxcb-composite \
 	+libxcb-shape +libxcb-xfixes +libxcb-render +libxcb-shm +libxkbcommon +udev \
-	+libmtdev +libjpeg +xkeyboard-config \
+	+libmtdev +libjpeg +xkeyboard-config +libinput +rpi-userland \
 	+WESTON_ENABLE_LIBUNWIND:libunwind \
 	+WESTON_ENABLE_DBUS:dbus \
-	+WESTON_ENABLE_WESTON_LAUNCH:libpam \
-	+WESTON_ENABLE_LIBINPUT:libinput
+	+WESTON_ENABLE_WESTON_LAUNCH:libpam 
   URL:=http://cgit.freedesktop.org/wayland/weston
   MENU:=1
 endef
@@ -45,21 +44,15 @@ define Package/weston/config
 	source "$(SOURCE)/Config.in"
 endef
 
-TARGET_CFLAGS+= -I$(STAGING_DIR)/usr/include/interface/vcos/pthreads -I$(STAGING_DIR)/usr/include/interface/vchiq_arm -DUSE_VCHIQ_ARM
 TARGET_LDFLAGS+= -rdynamic
-CONFIGURE_VARS+= LIBS="-lEGL -lGLESv2 -lbcm_host -lvcos"
 
 CONFIGURE_ARGS+= \
 	--disable-setuid-install --disable-drm-compositor --disable-x11-compositor \
 	--disable-rdp-compositor --disable-headless-compositor --disable-colord \
 	--disable-resize-optimization --disable-xwayland-test --enable-clients \
-	--enable-demo-clients-install
-
-ifeq ($(CONFIG_WESTON_ENABLE_CAIRO_GLESV2),y)
-	CONFIGURE_ARGS+= --with-cairo=glesv2
-else
-	CONFIGURE_ARGS+= --with-cairo=image
-endif
+	--enable-demo-clients-install --with-cairo=image --disable-egl \
+	--disable-simple-egl-clients --enable-libinput-backend \
+	--disable-wayland-compositor
 
 ifeq ($(CONFIG_WESTON_ENABLE_LIBUNWIND),y)
 	CONFIGURE_ARGS+= --enable-libunwind
@@ -77,24 +70,6 @@ ifeq ($(CONFIG_WESTON_ENABLE_WESTON_LAUNCH),y)
 	CONFIGURE_ARGS+= --enable-weston-launch
 else
 	CONFIGURE_ARGS+= --disable-weston-launch
-endif
-
-ifeq ($(CONFIG_WESTON_ENABLE_EGL),y)
-	CONFIGURE_ARGS+= --enable-egl --enable-simple-egl-clients
-else
-	CONFIGURE_ARGS+= --disable-egl --disable-simple-egl-clients
-endif
-
-ifeq ($(CONFIG_WESTON_ENABLE_LIBINPUT),y)
-	CONFIGURE_ARGS+= --enable-libinput-backend
-else
-	CONFIGURE_ARGS+= --disable-libinput-backend
-endif
-
-ifeq ($(CONFIG_WESTON_ENABLE_WAYLAND_COMPOSITOR),y)
-	CONFIGURE_ARGS+= --enable-wayland-compositor
-else
-	CONFIGURE_ARGS+= --disable-wayland-compositor
 endif
 
 ifeq ($(CONFIG_WESTON_ENABLE_FBDEV_COMPOSITOR),y)

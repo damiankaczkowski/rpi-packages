@@ -1,24 +1,6 @@
 menu "Configuration"
 	depends on PACKAGE_weston
 
-config WESTON_ENABLE_EGL
-	bool "Enable EGL"
-	default y
-	help
-	 Enables EGL acceleration of Weston.
-
-config WESTON_ENABLE_LIBINPUT
-	bool "Enable libinput backend"
-	default y
-	help
-	 Enables libinput backend for Weston. If disabled, uses internal input handling.
-
-config WESTON_ENABLE_WAYLAND_COMPOSITOR
-	bool "Build Wayland Compositor"
-	default y
-	help
-	 Build wayland compositor
-
 config WESTON_ENABLE_FBDEV_COMPOSITOR
 	bool "Build FBDev Compositor"
 	default n
@@ -27,15 +9,15 @@ config WESTON_ENABLE_FBDEV_COMPOSITOR
 
 config WESTON_ENABLE_XWAYLAND
 	bool "Enable xwayland"
-	default y
+	default n
 	help
 	 XWayland supports X11 native applications on Wayland. Compatibility with X11.
 
 config WESTON_ENABLE_LIBUNWIND
 	bool "Use libunwind"
-	default y
+	default n
 	help
-	 Enables linking against libunwind (Requires libunwind)
+	 Enables linking against libunwind (Requires libunwind). Libunwind only helps with weston crash reports and is safe to skip, if not intending to report bugs.
 
 config WESTON_ENABLE_DBUS
 	bool "Use DBUS"
@@ -48,11 +30,5 @@ config WESTON_ENABLE_WESTON_LAUNCH
 	default n
 	help
 	 Builds Weston Launch utility (Requires libpam)
-
-config WESTON_ENABLE_CAIRO_GLESV2
-	bool "Use cairo with glesv2 support"
-	default n
-	help
-	 Builds weston with support for cairo in glesv2 mode instead of image mode. Not recommended.
 
 endmenu
