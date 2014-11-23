@@ -24,7 +24,7 @@ define Package/cairo
   CATEGORY:=Raspberry Pi
   SUBMENU:=Libraries
   TITLE:=Multi-platform 2D graphics library
-  DEPENDS:=+fontconfig +libpng +libexpat +libpthread +librt +libxcb-render +libxcb-shm +libxcb +pixman +libjpeg +glib2 +rpi-userland @TARGET_brcm2708
+  DEPENDS:=+fontconfig +libpng +libexpat +libpthread +librt +libxcb-render +libxcb-shm +libxcb +pixman +libjpeg +glib2 +liblzo +rpi-userland @TARGET_brcm2708
   URL:=http://cairographics.org/
 endef
 
