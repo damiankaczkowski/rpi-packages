@@ -34,6 +34,8 @@ define Package/harfbuzz/description
   HarfBuzz is an OpenType text shaping engine.
 endef
 
+TARGET_CFLAGS+= -I$(STAGING_DIR)/usr/include/freetype2
+
 WITH_FEATURES:= --disable-gtk-doc \
 	--disable-gtk-doc-html \
 	--disable-gtk-doc-pdf \
