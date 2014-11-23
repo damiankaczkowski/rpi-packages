@@ -8,15 +8,23 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 PKG_NAME:=rpi-userland
-PKG_VERSION:=20131207
-PKG_SOURCE_URL:=https://github.com/tomeuv/userland/archive/wayland/
-PKG_REV:=69289713594a707f0475a6a37d0b34380f0634f3
-PKG_VERSION:=20131207_wayland
-PKG_SOURCE:=$(PKG_REV).tar.gz
-PKG_MD5SUM:=e02fcc3b76f1a3f9b2fd2b34e762e89b
+PKG_VERSION:=20141122
 PKG_RELEASE:=1
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/userland-wayland
-PKG_BUILD_DEPENDS:=libwayland libfreetype zlib
+
+PKG_SOURCE_URL:=https://github.com/raspberrypi/userland/archive/
+PKG_REV:=4333d6d023a1f0dcc763d0706a1fe6523f9b6005
+PKG_MD5SUM:=3cac9d31589cc7d41e8c03d02de76732
+
+#PKG_VERSION:=20131207
+#PKG_SOURCE_URL:=https://github.com/tomeuv/userland/archive/wayland/
+#PKG_REV:=69289713594a707f0475a6a37d0b34380f0634f3
+#PKG_VERSION:=20131207_wayland
+PKG_SOURCE:=$(PKG_REV).tar.gz
+#PKG_MD5SUM:=e02fcc3b76f1a3f9b2fd2b34e762e89b
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/userland-$(PKG_REV)
+#PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/userland-wayland
+PKG_BUILD_DEPENDS:=libfreetype zlib
+#PKG_BUILD_DEPENDS:=libwayland libfreetype zlib
 CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -24,12 +32,14 @@ include $(INCLUDE_DIR)/package.mk
 define Package/rpi-userland/Default
   SECTION:=rpi
   CATEGORY:=Raspberry Pi
-  URL:=https://github.com/tomeuv/userland
+  URL:=https://github.com/raspberrypi/userland
+#  URL:=https://github.com/tomeuv/userland
 endef
 
 define Package/rpi-userland
   $(call Package/rpi-userland/Default)
-  DEPENDS:=+libwayland @TARGET_brcm2708
+  DEPENDS:=+libpthread +librt @TARGET_brcm2708
+#  DEPENDS:=+libwayland @TARGET_brcm2708
   TITLE:=rpi-userland
   MENU:=1
 endef
@@ -123,11 +133,11 @@ define Package/rpi-hellovideocube
   TITLE:=rpi-hellovideocube demo
 endef
 
-define Package/rpi-hellowayland
-  $(call Package/rpi-userland/Default)
-  DEPENDS:=rpi-userland +rpi-hellotriangle +libwayland
-  TITLE:=rpi-hellowayland demo
-endef
+#define Package/rpi-hellowayland
+#  $(call Package/rpi-userland/Default)
+#  DEPENDS:=rpi-userland +rpi-hellotriangle +libwayland
+#  TITLE:=rpi-hellowayland demo
+#endef
 
 define Package/rpi-helloworld
   $(call Package/rpi-userland/Default)
@@ -177,11 +187,12 @@ define Build/Configure
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DDL_LIBRARY=$(STAGING_DIR) \
 		-DCMAKE_PREFIX_PATH=$(STAGING_DIR) \
-		-DBUILD_WAYLAND=TRUE \
-		-DWAYLAND_SCANNER_EXECUTABLE:FILEPATH:=$(TOPDIR)/staging_dir/host/bin/wayland-scanner \
 		$(CMAKE_OPTIONS) \
 		../../.. \
 	)
+#remove -DBUILD_WAYLAND=TRUE
+#and DWAYLAND_SCANNER_EXECUTABLE:FILEPATH=$(TOPDIR)/staging_dir/host/bin/wayland-scanner
+#that was between DCMAKE_PREFIX_PATH and $(CMAKE_OPTIONS)
 endef
 
 define Build/Compile
@@ -274,10 +285,10 @@ define Build/Compile
 	)
 
 	#Build hellowayland demo
-	(cd $(PKG_BUILD_DIR)/host_applications/linux/apps/hello_pi/hello_wayland; \
-		$(TARGET_CC) $(TARGET_CFLAGS) $(HELLOPI_CFLAGS) $(HELLOPI_INCLUDES) -g -c triangle.c -o triangle.o -Wno-deprecated-declarations; \
-		$(TARGET_CC) -o hello_wayland -Wl,--whole-archive triangle.o $(HELLOPI_LDFLAGS) -lwayland-client -lwayland-egl -Wl,--no-whole-archive -rdynamic; \
-	)
+#	(cd $(PKG_BUILD_DIR)/host_applications/linux/apps/hello_pi/hello_wayland; \
+#		$(TARGET_CC) $(TARGET_CFLAGS) $(HELLOPI_CFLAGS) $(HELLOPI_INCLUDES) -g -c triangle.c -o triangle.o -Wno-deprecated-declarations; \
+#		$(TARGET_CC) -o hello_wayland -Wl,--whole-archive triangle.o $(HELLOPI_LDFLAGS) -lwayland-client -lwayland-egl -Wl,--no-whole-archive -rdynamic; \
+#	)
 
 	#Build helloworld demo
 	(cd $(PKG_BUILD_DIR)/host_applications/linux/apps/hello_pi/hello_world; \
@@ -305,7 +316,7 @@ define Build/InstallDev
 	$(INSTALL_DATA) ./files/bcm_host.pc $(1)/usr/lib/pkgconfig/
 	$(INSTALL_DATA) ./files/egl.pc $(1)/usr/lib/pkgconfig/
 	$(INSTALL_DATA) ./files/glesv2.pc $(1)/usr/lib/pkgconfig/
-	$(INSTALL_DATA) ./files/wayland-egl.pc $(1)/usr/lib/pkgconfig/
+#	$(INSTALL_DATA) ./files/wayland-egl.pc $(1)/usr/lib/pkgconfig/
 
 endef
 
@@ -395,10 +406,10 @@ define Package/rpi-hellovideocube/install
 	$(CP) $(PKG_BUILD_DIR)/host_applications/linux/apps/hello_pi/hello_videocube/hello_videocube $(1)/usr/share/rpi_demos/
 endef
 
-define Package/rpi-hellowayland/install
-	$(INSTALL_DIR) $(1)/usr/share/rpi_demos
-	$(CP) $(PKG_BUILD_DIR)/host_applications/linux/apps/hello_pi/hello_wayland/hello_wayland $(1)/usr/share/rpi_demos/
-endef
+#define Package/rpi-hellowayland/install
+#	$(INSTALL_DIR) $(1)/usr/share/rpi_demos
+#	$(CP) $(PKG_BUILD_DIR)/host_applications/linux/apps/hello_pi/hello_wayland/hello_wayland $(1)/usr/share/rpi_demos/
+#endef
 
 define Package/rpi-helloworld/install
 	$(INSTALL_DIR) $(1)/usr/share/rpi_demos
@@ -420,5 +431,5 @@ $(eval $(call BuildPackage,rpi-hellotriangle))
 $(eval $(call BuildPackage,rpi-hellotriangle2))
 $(eval $(call BuildPackage,rpi-hellovideo))
 $(eval $(call BuildPackage,rpi-hellovideocube))
-$(eval $(call BuildPackage,rpi-hellowayland))
+#$(eval $(call BuildPackage,rpi-hellowayland))
 $(eval $(call BuildPackage,rpi-helloworld))
