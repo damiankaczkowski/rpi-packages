@@ -79,6 +79,7 @@ Hints for compiling?
 Sometimes, there are issues when trying to compile libefl and/or Elementary. Luckily, there's also a fix for that, although it needs a bit manual labor. This is because everytime, for some reason, everything isn't compiled in the right order. I got around this issue by noticing the error and then before retrying, I executed following commands:<br/>
 <pre>
 make package/feeds/packages/freetype/host/compile V=99
+make package/feeds/packages/harfbuzz/host/compile V=99
 make package/system/udev/host/compile V=99
 make package/libefl/compile V=99
 make package/libefl/install V=99
