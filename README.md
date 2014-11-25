@@ -24,9 +24,6 @@ Or you can download them from OpenWrt Trac one by one and also see the explanati
 list of patches and Trac URLs are provided in next two<br/>
 chapters of this ReadMe.<br/>
 
-*Ooops* One more patch.. efl needs newer freetype2 than stock.. So patch packages tree with this patch:
-[please wait]
-
 How to obtain dependant package tree?
 =====================================
 Use following 2 commands in your trunk's root:<br/>
@@ -54,6 +51,13 @@ Patches against base system
  * xorg-macros-upgrade.patch: https://dev.openwrt.org/raw-attachment/ticket/14699/xorg-macros-upgrade.patch<br/>
  * udev-add-hostbuild.patch: https://dev.openwrt.org/raw-attachment/ticket/15645/udev-add-hostbuild.patch<br/>
  * lua-add-fpic.patch: https://dev.openwrt.org/raw-attachment/ticket/15647/lua-add-fpic.patch<br/>
+
+Ooops! One more patch
+=====================
+To build libefl you need more recent version of libfreetype/freetype2. Patch packages with this patch:
+ * libfreetype2.patch: https://dev.openwrt.org/raw-attachment/ticket/18407/libfreetype2.patch<br/>
+
+This patch is not yet on rpi-openwrt/patches. Only at trac.
 
 How to include this package tree in my trunk sources?
 =====================================================
