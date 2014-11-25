@@ -82,6 +82,7 @@ make package/feeds/packages/freetype/host/compile V=99
 make package/feeds/packages/harfbuzz/host/compile V=99
 make package/feeds/packages/libpng/host/compile V=99
 make package/feeds/packages/dbus/host/compile V=99
+make package/feeds/rpi/libbullet/host/compile V=99
 make package/system/udev/host/compile V=99
 make package/libefl/compile V=99
 make package/libefl/install V=99
