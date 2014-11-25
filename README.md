@@ -24,6 +24,9 @@ Or you can download them from OpenWrt Trac one by one and also see the explanati
 list of patches and Trac URLs are provided in next two<br/>
 chapters of this ReadMe.<br/>
 
+*Ooops* One more patch.. efl needs newer freetype2 than stock.. So patch packages tree with this patch:
+[please wait]
+
 How to obtain dependant package tree?
 =====================================
 Use following 2 commands in your trunk's root:<br/>
@@ -71,6 +74,7 @@ Hints for compiling?
 ====================
 Sometimes, there are issues when trying to compile libefl and/or Elementary. Luckily, there's also a fix for that, although it needs a bit manual labor. This is because everytime, for some reason, everything isn't compiled in the right order. I got around this issue by noticing the error and then before retrying, I executed following commands:<br/>
 <pre>
+make package/feeds/packages/freetype/host/compile V=99
 make package/system/udev/host/compile V=99
 make package/libefl/compile V=99
 make package/libefl/install V=99
