@@ -1,6 +1,24 @@
 menu "Configuration"
 	depends on PACKAGE_weston
 
+config WESTON_ENABLE_EGL
+	bool "Enable EGL"
+	default y
+	help
+	 Use EGL acceleration with Wayland
+
+config WESTON_ENABLE_WAYLAND_COMPOSITOR
+	bool "Build Wayland Compositor"
+	default y
+	help
+	 Build wayland compositor
+
+config WESTON_ENABLE_CAIRO_GLESV2
+	bool "Use cairo with GLESv2 support"
+	default n
+	help
+	 Uses cairo in GLESv2 mode instead of image mode. Not recommended.
+
 config WESTON_ENABLE_FBDEV_COMPOSITOR
 	bool "Build FBDev Compositor"
 	default n

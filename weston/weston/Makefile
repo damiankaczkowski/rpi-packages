@@ -8,15 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weston
-PKG_VERSION:=20141123
+PKG_VERSION:=20141126
 PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git://anongit.freedesktop.org/wayland/weston
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=b4e976ab56776f3bb21b18979fbb0a9ec04001b9
+PKG_SOURCE_VERSION:=a4bac9e0e0d47b8698613a04ad0611dffb50f5dd
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
-PKG_MD5SUM:=34f748d40ec24c99ba883ee1af6bb160
+#PKG_MD5SUM:=34f748d40ec24c99ba883ee1af6bb160
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
 
@@ -44,15 +44,35 @@ define Package/weston/config
 	source "$(SOURCE)/Config.in"
 endef
 
+TARGET_CFLAGS+= -I$(STAGING_DIR)/usr/include/interface/vcos/pthreads -I$(STAGING_DIR)/usr/include/interface/vchiq_arm -DUSE_VCHIQ_ARM
+
 TARGET_LDFLAGS+= -rdynamic
+
+CONFIGURE_VARS+= LIBS="-lEGL -lGLESv2 -lbcm_host -lvcos"
 
 CONFIGURE_ARGS+= \
 	--disable-setuid-install --disable-drm-compositor --disable-x11-compositor \
 	--disable-rdp-compositor --disable-headless-compositor --disable-colord \
 	--disable-resize-optimization --disable-xwayland-test --enable-clients \
-	--enable-demo-clients-install --with-cairo=image --disable-egl \
-	--disable-simple-egl-clients --enable-libinput-backend \
-	--disable-wayland-compositor
+	--enable-demo-clients-install --enable-libinput-backend
+
+ifeq ($(CONFIG_WESTON_ENABLE_CAIRO_GLESV2),y)
+	CONFIGURE_ARGS+= --with-cairo=glesv2
+else
+	CONFIGURE_ARGS+= --with-cairo=image
+endif
+
+ifeq ($(CONFIG_WESTON_ENABLE_EGL),y)
+	CONFIGURE_ARGS+= --enable-egl --enable-simple-egl-clients
+else
+	CONFIGURE_ARGS+= --disable-egl --disable-simple-egl-clients
+endif
+
+ifeq ($(CONFIG_WESTON_ENABLE_WAYLAND_COMPOSITOR),y)
+	CONFIGURE_ARGS+= --enable-wayland-compositor
+else
+	CONFIGURE_ARGS+= --disable-wayland-compositor
+endif
 
 ifeq ($(CONFIG_WESTON_ENABLE_LIBUNWIND),y)
 	CONFIGURE_ARGS+= --enable-libunwind
