@@ -18,6 +18,7 @@ PKG_FIXUP:=libtool
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
 
 define Package/fontconfig
   SECTION:=rpi-utilities
@@ -42,6 +43,12 @@ CONFIGURE_VARS+= \
 
 TARGET_CFLAGS += -I$(STAGING_DIR)/usr/include/freetype2
 TARGET_LDFLAGS += -Wl,-rpath-link=$(STAGING_DIR)/usr/lib
+
+define Host/Compile
+	$(foreach dir,fc-case fc-lang fc-glyphname, \
+		$(MAKE_VARS) $(MAKE) -C $(HOST_BUILD_DIR)/$(dir) \
+			$(MAKE_FLAGS) || exit 1;)
+endef
 
 define Build/Compile
 	$(foreach dir,fc-case fc-lang fc-glyphname, \
@@ -72,4 +79,5 @@ define Package/fontconfig/install
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/fonts/fonts.conf $(1)/etc/fonts/
 endef
 
+$(eval $(call HostBuild))
 $(eval $(call BuildPackage,fontconfig))
