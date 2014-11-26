@@ -21,8 +21,7 @@ https://github.com/rpi-openwrt/patches<br/>
 There you also find patching guide, whether you use patches from there or from OpenWrt's Trac.
 
 Or you can download them from OpenWrt Trac one by one and also see the explanation of the patch,<br/>
-list of patches and Trac URLs are provided in next two<br/>
-chapters of this ReadMe.<br/>
+list of patches and Trac URLs are provided in next three chapters of this ReadMe.<br/>
 
 How to obtain dependant package tree?
 =====================================
@@ -52,9 +51,10 @@ Patches against base system
  * udev-add-hostbuild.patch: https://dev.openwrt.org/raw-attachment/ticket/15645/udev-add-hostbuild.patch<br/>
  * lua-add-fpic.patch: https://dev.openwrt.org/raw-attachment/ticket/15647/lua-add-fpic.patch<br/>
 
-Ooops! One more patch
-=====================
-To build libefl you need more recent version of libfreetype/freetype2. Patch packages with this patch:
+Patches against packages feed
+=============================
+To build libefl you need more recent version of libfreetype/freetype2.
+Patch packages feed with this patch:
  * libfreetype2.patch: https://dev.openwrt.org/raw-attachment/ticket/18407/libfreetype2.patch<br/>
 
 This patch is not yet on rpi-openwrt/patches. Only at trac.
