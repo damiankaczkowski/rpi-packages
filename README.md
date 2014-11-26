@@ -81,6 +81,7 @@ Sometimes, there are issues when trying to compile libefl and/or Elementary. Luc
 make package/feeds/packages/freetype/host/compile V=99
 make package/feeds/packages/harfbuzz/host/compile V=99
 make package/feeds/packages/libpng/host/compile V=99
+make package/feeds/rpi/fontconfig/host/compile V=99
 make package/feeds/packages/dbus/host/compile V=99
 make package/feeds/rpi/libbullet/host/compile V=99
 make package/system/udev/host/compile V=99
