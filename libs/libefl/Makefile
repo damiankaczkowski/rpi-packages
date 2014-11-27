@@ -27,9 +27,8 @@ PKG_BUILD_DEPENDS:= \
 	lua/host \
 	fontconfig/host \
 	libbullet/host \
-	harfbuzz/host
-# \
-#	libefl/host
+	harfbuzz/host \
+	libefl/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/autotools.mk
