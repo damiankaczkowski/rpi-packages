@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libefl
-PKG_VERSION:=1.9.3
-PKG_MAJOR_VERSION:=1.9
+PKG_VERSION:=1.12.1
+PKG_MAJOR_VERSION:=1.12
 PKG_RELEASE=1
 
 PKG_SOURCE:=efl-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://download.enlightenment.org/rel/libs/efl/
-PKG_MD5SUM:=102acebaf453346d745b0974f736a5e6
+PKG_MD5SUM:=ac784b11bd1854459c05a78d783aae57
 PKG_BUILD_DIR:=$(BUILD_DIR)/efl-$(PKG_VERSION)
 PKG_INSTALL:=1
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/efl-$(PKG_VERSION)
@@ -25,9 +25,11 @@ PKG_BUILD_DEPENDS:= \
 	udev/host \
 	dbus/host \
 	lua/host \
+	fontconfig/host \
 	libbullet/host \
-	harfbuzz/host \
-	libefl/host
+	harfbuzz/host
+# \
+#	libefl/host
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/autotools.mk
@@ -92,7 +94,7 @@ WITH_FEATURES:= --disable-nls \
 	--disable-multisense \
 	--disable-xine \
 	--disable-v4l2 \
-	--disable-always-build-with-examples \
+	--disable-always-build-examples \
 	--disable-image-loader-gif \
 	--disable-image-loader-tiff \
 	--with-crypto=none \
@@ -105,7 +107,7 @@ WITH_FEATURES:= --disable-nls \
 	--without-eject \
 	--disable-always-build-examples \
 	--enable-lua-old \
-	--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-aaa
+	--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-aba
 
 HOST_CONFIGURE_VARS+= \
 	PKG_CONFIG_PATH="$(STAGING_DIR_HOST)/lib/pkgconfig:$(HOST_BUILD_DIR)/pkgconfig"
@@ -118,7 +120,9 @@ HOST_CFLAGS+= -I$(HOST_BUILD_DIR)/include \
 TARGET_CFLAGS+= -std=gnu99 \
 	-I$(STAGING_DIR)/usr/include/bullet \
 	-I$(STAGING_DIR)/usr/include/harfbuzz \
+	-I$(STAGING_DIR)/usr/include/freetype2 \
 	-I$(STAGING_DIR)/usr/include/interface/vcos/pthreads \
+	-I$(STAGING_DIR)/usr/include/interface/vchiq_arm \
 	-I$(STAGING_DIR)/usr/include/interface/vmcs_host/linux \
 	-DUSE_VCHIQ_ARM
 
@@ -137,7 +141,7 @@ define Host/Configure
 		$(HOST_CONFIGURE_VARS) ./configure \
 		$(HOST_CONFIGURE_ARGS) $(WITH_FEATURES) \
 		--disable-fb \
-		--disable-fontconfig \
+		--enable-fontconfig \
 		--with-opengl=es; \
 	)
 endef
@@ -146,22 +150,19 @@ define Host/Compile
 	$(MAKE) -C $(HOST_BUILD_DIR)
 endef
 
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	$(CP) $(STAGING_DIR_HOST)/bin/edje_* $(PKG_BUILD_DIR)/src/bin/edje/
-endef
-
 define Build/Configure
 	$(call autoreconf_target)
 	(cd $(PKG_BUILD_DIR); \
-		$(CONFIGURE_VARS) ./configure \
+		$(CONFIGURE_VARS) LIBS="-lEGL -lGLESv2 -lbcm_host -lvcos" ./configure \
 		$(CONFIGURE_ARGS) $(WITH_FEATURES) \
 		--enable-fontconfig \
 		--enable-wayland \
 		--enable-fb \
 		--enable-egl \
 		--with-opengl=es \
-		--with-bin-edje-cc=$(STAGING_DIR_HOST)/bin/edje_cc \
+		--with-edje-cc=$(STAGING_DIR_HOST)/bin/edje_cc \
+		--with-eolian-gen=$(STAGING_DIR_HOST)/bin/eolian-gen \
+		--with-eolian-cxx=$(STAGING_DIR_HOST)/bin/eolian-cxx \
 		--config-cache; \
 	)
 endef
