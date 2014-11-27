@@ -87,6 +87,7 @@ make package/feeds/rpi/libbullet/host/compile V=99
 make package/system/udev/host/compile V=99
 make package/libefl/compile V=99
 make package/libefl/install V=99
+make package/feeds/rpi/elementary/host/compile V=99
 </pre>
 
 And after this, I again commanded make to build the image and all packages I wanted and everything worked out.
