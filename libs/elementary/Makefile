@@ -9,13 +9,13 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/autotools.mk
 
 PKG_NAME:=elementary
-PKG_VERSION:=1.9.3
-PKG_MAJOR_VERSION:=1.9
+PKG_VERSION:=1.12.1
+PKG_MAJOR_VERSION:=1.12
 PKG_RELEASE=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=http://download.enlightenment.org/rel/libs/elementary/
-PKG_MD5SUM:=cc75bb1c7c4c49de120ec33e413130ce
+#PKG_MD5SUM:=cc75bb1c7c4c49de120ec33e413130ce
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/$(PKG_NAME)-$(PKG_VERSION)
 HOST_BUILD_DEPENDS:=libefl/host
 PKG_BUILD_DEPENDS:= \
